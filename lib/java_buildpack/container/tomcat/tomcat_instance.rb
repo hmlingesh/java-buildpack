@@ -36,8 +36,8 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        #puts @application.root
-        #FileUtils.mkdir_p @application.root + "jprofiler8"
+        puts @application.root
+        FileUtils.mkdir_p @application.root + "jprofiler8"
         #RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../resources', __FILE__)).freeze
         #resources = RESOURCES_DIRECTORY + "jprofiler8"
         #FileUtils.cp_r("#{resources}/.", @application.root.to_s+ "jprofiler8")
