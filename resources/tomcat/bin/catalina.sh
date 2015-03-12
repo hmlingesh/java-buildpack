@@ -95,7 +95,7 @@
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 # -----------------------------------------------------------------------------
 #custome JAVA_OPTS
-JAVA_OPTS="$JAVA_OPTS -agentpath:/home/vcap/app/jprofiler8/bin/linux-x64/libjprofilerti.so='nowait',port=58849"
+JAVA_OPTS="$JAVA_OPTS -agentpath:/home/vcap/app/jprofiler8/bin/linux-x64/libjprofilerti.so='nowait',port=8849"
 
 # OS specific support.  $var _must_ be set to either true or false.
 cygwin=false
