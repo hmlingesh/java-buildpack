@@ -40,7 +40,7 @@ module JavaBuildpack
       def compile
         puts @application.root
         FileUtils.mkdir_p @application.root + "jprofiler8"
-        RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../../resources', __FILE__)).freeze
+        #RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../../resources', __FILE__)).freeze
        # resources = RESOURCES_DIRECTORY + "jprofiler8"
       #  puts resources
         #FileUtils.cp_r("#{resources}/.", @application.root.to_s+ "jprofiler8")
