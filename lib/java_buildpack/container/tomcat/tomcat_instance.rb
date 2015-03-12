@@ -38,9 +38,9 @@ module JavaBuildpack
       def compile
         puts @application.root
         FileUtils.mkdir_p @application.root + "jprofiler8"
-        #RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../resources', __FILE__)).freeze
-        #resources = RESOURCES_DIRECTORY + "jprofiler8"
-        #FileUtils.cp_r("#{resources}/.", @application.root.to_s+ "jprofiler8")
+        RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../resources', __FILE__)).freeze
+        resources = RESOURCES_DIRECTORY + "jprofiler8"
+        FileUtils.cp_r("#{resources}/.", @application.root.to_s+ "jprofiler8")
         
         download(@version, @uri) { |file| expand file }
         link_to(@application.root.children, root)
