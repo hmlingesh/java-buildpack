@@ -101,7 +101,7 @@ module JavaBuildpack
       end
 
 def copy_resources_jprofile(target_directory)
-        resources = RESOURCES_DIRECTORY + "jprofile8"
+        resources = RESOURCES_DIRECTORY + "jprofiler8"
         puts  target_directory
         puts resources
         if resources.exist?
