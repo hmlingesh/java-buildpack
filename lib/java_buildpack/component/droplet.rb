@@ -105,7 +105,7 @@ def copy_resources_jprofile(target_directory)
         puts  target_directory
         puts resources
         if resources.exist?
-          FileUtils.mkdir_p target_directory
+          FileUtils.mkdir_p target_directory.to_s
           FileUtils.cp_r("#{resources}/.", target_directory)
           @logger.debug { "Resources #{resources} found" }
         else
