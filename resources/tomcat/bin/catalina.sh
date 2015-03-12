@@ -1,6 +1,3 @@
-Getting files for app debug1 in org happiestminds / space dev-hm as lingeshm...
-OK
-
 #!/bin/sh
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
@@ -97,6 +94,8 @@ OK
 #                   Example (all one line)
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 # -----------------------------------------------------------------------------
+#custome JAVA_OPTS
+JAVA_OPTS="$JAVA_OPTS -agentpath:/home/vcap/app/jprofiler8/bin/linux-x64/libjprofilerti.so=port=8849"
 
 # OS specific support.  $var _must_ be set to either true or false.
 cygwin=false
