@@ -1,0 +1,65 @@
+<!--
+  Compile and run the sample custom profiler. See src-profiler/TestProfiler.java for more information.
+
+  Note: A 1.7 JRE is required for compiling and running this sample
+-->
+<project name="platform" default="run">
+
+  <import file="../common/ant_common.xml"/>
+
+  <target name="compile" depends="prepare" description="Compile the test profiler">
+
+    <!-- The test program does not depend on anything else -->
+    <javac srcdir="src-test" />
+
+    <!-- Probes depend only on agent.jar, they can be used for any kind of profiling -->
+    <javac srcdir="src-probe">
+      <classpath>
+        <fileset dir="${bin.dir}">
+          <include name="agent.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+
+    <!-- The test profiler references the test program as well as the probe.
+         platform.jar contains the infrastructure for writing a custom profiler.
+     -->
+    <javac srcdir="src-profiler">
+      <classpath>
+        <pathelement path="src-test"/>
+        <pathelement path="src-probe"/>
+        <fileset dir="${bin.dir}">
+          <include name="platform.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+
+  </target>
+
+  <target name="clean" description="Delete all compiled classes">
+    <delete>
+      <fileset dir="." includes="src-*/**/*.class"/>
+    </delete>
+  </target>
+
+  <target name="run" depends="compile" description="Compile and run the test profiler">
+
+    <java classname="TestProfiler" fork="true">
+      <!-- VM parameter that loads native profiling agent for Java 1.5+ and activate offline profiling mode -->
+      <jvmarg value="-agentpath:${libraryPath}=offline,id=80,config=../common/config.xml"/>
+      <!-- The custom interceptors are registered with an probe provider -->
+      <jvmarg value="-Djprofiler.probeProvider=probe.LoadFactorProbeProvider"/>
+      <!-- The probe classes have to be added to the boot classpath so that the interceptors are available to the agent -->
+      <jvmarg value="-Xbootclasspath/a:src-probe"/>
+
+      <!-- The platform JAR file is added to the boot classpath, agent.jar is added automatically to the boot classpath -->
+      <jvmarg value="-Xbootclasspath/a:${bin.dir}/platform.jar"/>
+
+      <!-- the probe is already in the boot classpath, so it does not have to be added to the classpath -->
+      <classpath>
+        <pathelement path="src-profiler"/>
+        <pathelement path="src-test"/>
+      </classpath>
+    </java>
+  </target>
+</project>
