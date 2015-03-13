@@ -38,12 +38,12 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-      #  jprofile_path=@application.root+"jprofiler8"
-      #@droplet.copy_resources_jprofile jprofile_path.to_s
-      open("https://s3.amazonaws.com/covisintrnd.com-software/jprofiler_linux_8_1_4.tar.gz") do 
-             |file|
-              shell "tar xzf #{file.path} -C #{@application.root} 2>&1"
-         end 
+      jprofile_path=@application.root+"jprofiler8"
+      @droplet.copy_resources_jprofile jprofile_path.to_s
+      #open("https://s3.amazonaws.com/covisintrnd.com-software/jprofiler_linux_8_1_4.tar.gz") do 
+      #       |file|
+      #        shell "tar xzf #{file.path} -C #{@application.root} 2>&1"
+      #   end 
         #puts @application.root
         #FileUtils.mkdir_p @application.root + "jprofiler8"
         #RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../../resources', __FILE__)).freeze
