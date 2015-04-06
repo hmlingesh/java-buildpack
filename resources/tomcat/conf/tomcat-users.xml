@@ -35,7 +35,9 @@ OK
 
   <role rolename="tomcat"/>
   <role rolename="role1"/>
-  <user username="tomcat" password="tomcat" roles="tomcat"/>
+  <role rolename="manager-gui"/>
+  <role rolename="manager"/> 
+  <user username="tomcat" password="tomcat" roles="tomcat,manager-gui,manager"/>
   <!--<user username="tomcat" password="tomcat" roles="tomcat,manager-gui,manager,poweruser,poweruserplus,probeuser"/>-->
   <user username="both" password="tomcat" roles="tomcat,role1"/>
   <user username="role1" password="tomcat" roles="role1"/>
