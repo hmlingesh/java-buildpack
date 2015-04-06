@@ -19,8 +19,6 @@ require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/container'
 require 'java_buildpack/container/tomcat/tomcat_utils'
 require 'java_buildpack/util/tokenized_version'
-require 'java_buildpack/util/filtering_pathname'
-require 'pathname'
 
 module JavaBuildpack
   module Container
