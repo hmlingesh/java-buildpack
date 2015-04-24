@@ -19,8 +19,6 @@ require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/container'
 require 'java_buildpack/container/tomcat/tomcat_utils'
 require 'java_buildpack/util/tokenized_version'
-require 'java_buildpack/util/filtering_pathname'
-require 'pathname'
 
 module JavaBuildpack
   module Container
@@ -38,19 +36,6 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-      jprofile_path=@application.root+"jprofiler8"
-      @droplet.copy_resources_jprofile jprofile_path.to_s
-      #open("https://s3.amazonaws.com/covisintrnd.com-software/jprofiler_linux_8_1_4.tar.gz") do 
-      #       |file|
-      #        shell "tar xzf #{file.path} -C #{@application.root} 2>&1"
-      #   end 
-        #puts @application.root
-        #FileUtils.mkdir_p @application.root + "jprofiler8"
-        #RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../../resources', __FILE__)).freeze
-       # resources = RESOURCES_DIRECTORY + "jprofiler8"
-      #  puts resources
-        #FileUtils.cp_r("#{resources}/.", @application.root.to_s+ "jprofiler8")
-        
         download(@version, @uri) { |file| expand file }
         link_to(@application.root.children, root)
         @droplet.additional_libraries << tomcat_datasource_jar if tomcat_datasource_jar.exist?
