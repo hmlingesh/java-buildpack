@@ -100,19 +100,6 @@ module JavaBuildpack
         end
       end
 
-def copy_resources_jprofile(target_directory)
-        resources = RESOURCES_DIRECTORY + "jprofiler8"
-        puts  target_directory
-        puts resources
-        if resources.exist?
-          FileUtils.mkdir_p target_directory.to_s
-          FileUtils.cp_r("#{resources}/.", target_directory)
-          @logger.debug { "Resources #{resources} found" }
-        else
-          @logger.debug { "No resources #{resources} found" }
-        end
-      end
-      
       private
 
       RESOURCES_DIRECTORY = Pathname.new(File.expand_path('../../../../resources', __FILE__)).freeze
