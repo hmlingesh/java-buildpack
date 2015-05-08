@@ -45,7 +45,9 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         @droplet.java_opts
-          .add_agentpath(agent_dir + "libdtagent.so", {name: application_name + "_" + profile_name, server: server})
+        .add_agentpath(agent_dir + "libdtagent.so", {name: +"application_name" + "_" + "profile_name", server: ip-172-31-0-69:9998})
+          #.add_agentpath(agent_dir + "libdtagent.so", {name: application_name + "_" + profile_name, server: server})
+          
       end
 
       protected
