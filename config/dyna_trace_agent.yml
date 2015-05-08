@@ -15,5 +15,5 @@
 
 # Configuration for the New Relic framework
 ---
-version: 6.1.0_+
+version: 6.1.0
 repository_root: "https://s3-us-west-2.amazonaws.com/covisintrnd.com-dynatrace/"
