@@ -29,6 +29,11 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
+        puts agent_dir 
+        puts application_name 
+        puts profile_name
+        puts server
+        
         download_zip false
         @droplet.copy_resources
         FileUtils.mkdir(home_dir)
