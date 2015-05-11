@@ -54,8 +54,8 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
-        true
-        #@application.services.one_service? FILTER, 'server'
+        #true
+        @application.services.one_service? FILTER, 'server'
       end
 
       private
