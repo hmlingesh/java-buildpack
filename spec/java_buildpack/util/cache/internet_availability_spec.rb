@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2015 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,8 +22,8 @@ require 'java_buildpack/util/configuration_utils'
 require 'java_buildpack/util/cache/internet_availability'
 
 describe JavaBuildpack::Util::Cache::InternetAvailability do
-  include_context 'internet_availability_helper'
-  include_context 'logging_helper'
+  include_context 'with internet availability help'
+  include_context 'with logging help'
 
   it 'uses internet by default' do
     expect(described_class.instance.available?).to be
@@ -32,7 +33,7 @@ describe JavaBuildpack::Util::Cache::InternetAvailability do
 
     before do
       allow(JavaBuildpack::Util::ConfigurationUtils).to receive(:load).with('cache')
-                                                          .and_return('remote_downloads' => 'disabled')
+                                                                      .and_return('remote_downloads' => 'disabled')
       described_class.instance.send :initialize
     end
 
@@ -41,14 +42,18 @@ describe JavaBuildpack::Util::Cache::InternetAvailability do
     end
   end
 
-  it 'records availability' do
+  it 'records availability',
+     :enable_log_file do
+
     described_class.instance.available false
 
     expect(described_class.instance.available?).not_to be
     expect(log_contents).not_to match(/Internet availability set to false/)
   end
 
-  it 'records availability with message' do
+  it 'records availability with message',
+     :enable_log_file do
+
     described_class.instance.available false, 'test message'
 
     expect(described_class.instance.available?).not_to be
